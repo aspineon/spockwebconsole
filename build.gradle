@@ -4,7 +4,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'org.gradle.api.plugins:gradle-gae-plugin:0.8'
+        classpath 'com.google.appengine:gradle-appengine-plugin:1.8.6'
     }
 }
 
@@ -12,7 +12,7 @@ apply plugin: "groovy"
 apply plugin: "war"
 apply plugin: "idea"
 apply plugin: "eclipse"
-apply plugin: "gae"
+apply plugin: "appengine"
 
 group = "org.spockframework"
 version = "1.0"
@@ -30,33 +30,33 @@ repositories {
 
 dependencies {
   // from Maven repos
-  compile "org.codehaus.groovy:groovy-all:2.1.2"
+  compile "org.codehaus.groovy:groovy-all:2.1.3"
   compile "org.spockframework:spock-core:1.0-groovy-2.0-SNAPSHOT@jar"
   compile "junit:junit:4.11"
-  runtime "com.google.appengine:appengine-api-1.0-sdk:1.7.6"
-  runtime "com.google.appengine:appengine-api-labs:1.7.6"
-  runtime "org.gaelyk:gaelyk:2.0-SNAPSHOT"
-  gaeSdk 'com.google.appengine:appengine-java-sdk:1.7.6'
+  runtime "com.google.appengine:appengine-api-1.0-sdk:1.8.8"
+  runtime "com.google.appengine:appengine-api-labs:1.8.8"
+  runtime "org.gaelyk:gaelyk:2.0"
+  appengineSdk "com.google.appengine:appengine-java-sdk:1.8.8"
 
   // from lib folder
   runtime ":ocpsoft-pretty-time-1:1.0.2"
   //providedCompile "javax.servlet:servlet-api:2.5"
 }
 
-gae {
+appengine {
     downloadSdk = true
     appcfg {
         email = "pniederw@gmail.com"
-        password = "MISSING"
+        
     }
 }
 
-gaeUpdate {
+appengineUpdate {
     useJava7 = true
 }
 
 task wrapper(type: Wrapper) {
-  gradleVersion = "1.5"
+  gradleVersion = "1.10"
 }
 
 
